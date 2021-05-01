@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
-import projectsReducer from './projects'
+import projectReducer from './project'
+import userReducer from './user'
 
 const rootReducer = combineReducers({
-  projects: projectsReducer,
+  project: projectReducer,
+  user: userReducer,
 })
 
 export default rootReducer

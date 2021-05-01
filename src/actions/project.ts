@@ -1,19 +1,19 @@
 import { Dispatch } from 'redux'
 import {
-  PROJECTS_SUCCESS,
-  PROJECTS_LOADING,
-  PROJECTS_FAIL,
-  ProjectsActionTypes,
+  GET_PROJECTS_SUCCESS,
+  GET_PROJECTS_LOADING,
+  GET_PROJECTS_FAIL,
+  ProjectActionTypes,
   ProjectsType,
 } from './types'
 import axios from 'axios'
 
 export const getProjects = () => async (
-  dispatch: Dispatch<ProjectsActionTypes>
+  dispatch: Dispatch<ProjectActionTypes>
 ) => {
   try {
     dispatch({
-      type: PROJECTS_LOADING,
+      type: GET_PROJECTS_LOADING,
     })
 
     const res = await axios.get(``)
@@ -26,12 +26,12 @@ export const getProjects = () => async (
     )
 
     dispatch({
-      type: PROJECTS_SUCCESS,
+      type: GET_PROJECTS_SUCCESS,
       payload: projects,
     })
   } catch (e) {
     dispatch({
-      type: PROJECTS_FAIL,
+      type: GET_PROJECTS_FAIL,
     })
   }
 }

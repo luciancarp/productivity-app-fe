@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { fontSizes, fonts, spaces, ThemeType } from '../style/global'
+import { fontSizes, fonts, spaces, ThemeType } from './global'
 
 import '../style/typography.css'
 

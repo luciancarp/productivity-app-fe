@@ -1,8 +1,8 @@
 import {
-  PROJECTS_SUCCESS,
-  PROJECTS_LOADING,
-  PROJECTS_FAIL,
-  ProjectsActionTypes,
+  GET_PROJECTS_SUCCESS,
+  GET_PROJECTS_LOADING,
+  GET_PROJECTS_FAIL,
+  ProjectActionTypes,
   ProjectsType,
 } from '../actions/types'
 
@@ -16,22 +16,22 @@ const initialState: InitialStateType = {
   projects: [],
 }
 
-const projectsReducer = (
+const projectReducer = (
   state: InitialStateType = initialState,
-  action: ProjectsActionTypes
+  action: ProjectActionTypes
 ): InitialStateType => {
   switch (action.type) {
-    case PROJECTS_FAIL:
+    case GET_PROJECTS_FAIL:
       return {
         ...state,
         loading: false,
       }
-    case PROJECTS_LOADING:
+    case GET_PROJECTS_LOADING:
       return {
         ...state,
         loading: true,
       }
-    case PROJECTS_SUCCESS:
+    case GET_PROJECTS_SUCCESS:
       return {
         ...state,
         loading: false,
@@ -42,4 +42,4 @@ const projectsReducer = (
   }
 }
 
-export default projectsReducer
+export default projectReducer
