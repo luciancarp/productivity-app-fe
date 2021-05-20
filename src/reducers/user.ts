@@ -5,6 +5,9 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_LOADING,
   LOGIN_USER_FAIL,
+  CREATE_USER_SUCCESS,
+  CREATE_USER_LOADING,
+  CREATE_USER_FAIL,
   UserActionTypes,
   UserType,
 } from '../actions/types'
@@ -59,6 +62,24 @@ const userReducer = (
         loading: true,
       }
     case LOGIN_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isAuthenticated: true,
+        user: action.payload,
+      }
+    case CREATE_USER_FAIL:
+      return {
+        ...state,
+        isAuthenticated: false,
+        loading: false,
+      }
+    case CREATE_USER_LOADING:
+      return {
+        ...state,
+        loading: true,
+      }
+    case CREATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,

@@ -10,8 +10,10 @@ import { ThemeProvider } from './style/Theme'
 import GlobalStyle from './style/GlobalStyle'
 
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import Projects from './components/Projects'
 import Layout from './components/Layout'
+import Alerts from './components/Alerts'
 
 if (localStorage.token) {
   setAuthToken(localStorage.token)
@@ -27,8 +29,9 @@ const App = () => {
       <ThemeProvider>
         <GlobalStyle />
         <Router>
+          <Alerts />
           <Switch>
-            {/* <Route exact path='/sign-up' component={SignUp} /> */}
+            <Route exact path='/sign-up' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <Layout>
               <Route exact path='/' component={Projects} />
