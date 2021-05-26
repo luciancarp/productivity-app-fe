@@ -534,7 +534,7 @@ body,
   }
 
   h3 {
-    margin-bottom: ${spaces.narrow};
+    margin-bottom: ${spaces.regular};
 
     font-size: ${fontSizes.medium}
   }

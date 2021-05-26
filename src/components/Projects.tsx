@@ -1,6 +1,17 @@
 import styled from 'styled-components'
 
-const Projects = () => (
+import { connect, ConnectedProps } from 'react-redux'
+import { RootStore } from '../store'
+import { getProjects } from '../actions/project'
+
+const mapStateToProps = (state: RootStore) => ({
+  project: state.project,
+})
+const connector = connect(mapStateToProps, { getProjects })
+type PropsFromRedux = ConnectedProps<typeof connector>
+type Props = PropsFromRedux & {}
+
+const Projects = ({ getProjects, project }: Props) => (
   <Container>
     <ProjectTitle>Project 1</ProjectTitle>
     <ProjectTitle>Project 2</ProjectTitle>
@@ -17,4 +28,4 @@ const Container = styled.div`
 
 const ProjectTitle = styled.h3``
 
-export default Projects
+export default connector(Projects)

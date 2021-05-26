@@ -1,9 +1,16 @@
 import { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
 import { createUser } from '../actions/user'
+
+import styled from 'styled-components'
+import ThemeSwitcher from './ThemeSwitcher'
+import { itemStyle } from '../style/componentStyles'
+import { spaces } from '../style/global'
+import Input from './Input'
+import Button from './Button'
 
 const mapStateToProps = (state: RootStore) => ({
   user: state.user,
@@ -32,34 +39,91 @@ const SignUp = ({ createUser, user }: Props) => {
   }
 
   return (
-    <div>
-      <h1>Sign Up</h1>
+    <Container>
+      <ThemeSwitcher />
+      <Content>
+        <Title>Sign Up</Title>
 
-      <form noValidate onSubmit={onSubmit}>
-        <div>
-          <label>
-            Name:
-            <input type='name' name='name' onChange={onChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Email:
-            <input type='email' name='email' onChange={onChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
-            <input type='password' name='password' onChange={onChange} />
-          </label>
-        </div>
-        <div>
-          <input type='submit' value='Sign up' />
-        </div>
-      </form>
-    </div>
+        <StyledForm noValidate onSubmit={onSubmit}>
+          <Row>
+            <Input label='Name' type='name' name='name' onChange={onChange} />
+          </Row>
+          <Row>
+            <Input
+              label='Email'
+              type='email'
+              name='email'
+              onChange={onChange}
+            />
+          </Row>
+          <Row>
+            <Input
+              label='Password'
+              type='password'
+              name='password'
+              onChange={onChange}
+            />
+          </Row>
+          <Row>
+            <Button type='submit' text='Sign up' width='66%' />
+          </Row>
+          <Row style={{ margin: '0' }}>
+            <h4>
+              Already have an account?{' '}
+              <StyledLink href='#' to='/login'>
+                Log in
+              </StyledLink>
+            </h4>
+          </Row>
+        </StyledForm>
+      </Content>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  position: relative;
+
+  min-height: 100vh;
+
+  background-color: ${(props) => props.theme.background};
+`
+
+const Content = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 350px;
+
+  ${itemStyle}
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const Row = styled.div`
+  margin-bottom: ${spaces.regular};
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+const Title = styled.h3`
+  text-align: center;
+`
+
+const StyledForm = styled.form`
+  width: 100%;
+`
+
+const StyledLink = styled(Link)`
+  font-weight: bold;
+`
 
 export default connector(SignUp)

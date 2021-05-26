@@ -1,9 +1,17 @@
 import { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
 import { loginUser } from '../actions/user'
+
+import Input from './Input'
+import Button from './Button'
+
+import styled from 'styled-components'
+import ThemeSwitcher from './ThemeSwitcher'
+import { itemStyle } from '../style/componentStyles'
+import { spaces } from '../style/global'
 
 const mapStateToProps = (state: RootStore) => ({
   user: state.user,
@@ -31,28 +39,89 @@ const Login = ({ loginUser, user }: Props) => {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
+    <Container>
+      <ThemeSwitcher />
+      <Content>
+        <Title>Login</Title>
 
-      <form noValidate onSubmit={onSubmit}>
-        <div>
-          <label>
-            Email:
-            <input type='email' name='email' onChange={onChange} />
-          </label>
-        </div>
-        <div>
-          <label>
-            Password:
-            <input type='password' name='password' onChange={onChange} />
-          </label>
-        </div>
-        <div>
-          <input type='submit' value='Log in' />
-        </div>
-      </form>
-    </div>
+        <StyledForm noValidate onSubmit={onSubmit}>
+          <Row>
+            <Input
+              label='Email'
+              type='email'
+              name='email'
+              onChange={onChange}
+            />
+          </Row>
+
+          <Row>
+            <Input
+              label='Password'
+              type='password'
+              name='password'
+              onChange={onChange}
+            />
+          </Row>
+          <Row>
+            <Button type='submit' text='Log in' width='66%' />
+          </Row>
+          <Row style={{ margin: '0' }}>
+            <h4>
+              Don't have an account?{' '}
+              <StyledLink href='#' to='/signup'>
+                Sign Up
+              </StyledLink>
+            </h4>
+          </Row>
+        </StyledForm>
+      </Content>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  position: relative;
+
+  min-height: 100vh;
+
+  background-color: ${(props) => props.theme.background};
+`
+
+const Content = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 350px;
+
+  ${itemStyle}
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+const Row = styled.div`
+  margin-bottom: ${spaces.regular};
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+const Title = styled.h3`
+  text-align: center;
+`
+
+const StyledForm = styled.form`
+  width: 100%;
+`
+
+const StyledLink = styled(Link)`
+  font-weight: bold;
+`
 
 export default connector(Login)
