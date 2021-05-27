@@ -3,7 +3,7 @@ import { pressedItemStyle } from '../style/componentStyles'
 
 type Props = {
   label: string
-  type: string
+  type?: string
   name: string
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
 }

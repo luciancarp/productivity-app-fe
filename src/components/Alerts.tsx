@@ -25,23 +25,23 @@ const Alerts = ({ alert, removeAlert }: Props) => {
     }
 
     alert.forEach((alert) => {
-      if (displayed.includes(alert.id)) return
+      if (!displayed.includes(alert.id)) {
+        storeDisplayed(alert.id)
 
-      storeDisplayed(alert.id)
-
-      toast.error(alert.message, {
-        position: 'bottom-left',
-        autoClose: false,
-        hideProgressBar: true,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        onClose: () => {
-          removeDisplayed(alert.id)
-          removeAlert(alert.id)
-        },
-      })
+        toast.error(alert.message, {
+          position: 'bottom-left',
+          autoClose: false,
+          hideProgressBar: true,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          onClose: () => {
+            removeDisplayed(alert.id)
+            removeAlert(alert.id)
+          },
+        })
+      }
     })
   }, [alert, displayed, removeAlert])
 

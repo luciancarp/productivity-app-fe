@@ -57,6 +57,10 @@ export const GET_PROJECTS_SUCCESS = 'GET_PROJECTS_SUCCESS'
 export const GET_PROJECTS_LOADING = 'GET_PROJECTS_LOADING'
 export const GET_PROJECTS_FAIL = 'GET_PROJECTS_FAIL'
 
+export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS'
+export const CREATE_PROJECT_LOADING = 'CREATE_PROJECT_LOADING'
+export const CREATE_PROJECT_FAIL = 'CREATE_PROJECT_FAIL'
+
 export type ProjectType = {
   title: string
   date: Date
@@ -68,3 +72,6 @@ export type ProjectActionTypes =
   | { type: 'GET_PROJECTS_SUCCESS'; payload: ProjectsType }
   | { type: 'GET_PROJECTS_LOADING' }
   | { type: 'GET_PROJECTS_FAIL' }
+  | { type: 'CREATE_PROJECT_SUCCESS'; payload: ProjectType }
+  | { type: 'CREATE_PROJECT_LOADING' }
+  | { type: 'CREATE_PROJECT_FAIL' }
