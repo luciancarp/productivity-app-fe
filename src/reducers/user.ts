@@ -5,12 +5,14 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_LOADING,
   LOGIN_USER_FAIL,
+  LOGOUT_USER,
   CREATE_USER_SUCCESS,
   CREATE_USER_LOADING,
   CREATE_USER_FAIL,
   UserActionTypes,
   UserType,
 } from '../actions/types'
+import setAuthToken from '../utils/setAuthToken'
 
 type InitialStateType = {
   loading: boolean
@@ -67,6 +69,13 @@ const userReducer = (
         loading: false,
         isAuthenticated: true,
         user: action.payload,
+      }
+    case LOGOUT_USER:
+      localStorage.removeItem('token')
+      setAuthToken()
+      return {
+        ...state,
+        ...initialState,
       }
     case CREATE_USER_FAIL:
       return {

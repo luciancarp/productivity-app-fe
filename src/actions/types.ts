@@ -27,6 +27,8 @@ export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_LOADING = 'LOGIN_USER_LOADING'
 export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL'
 
+export const LOGOUT_USER = 'LOGOUT_USER'
+
 export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS'
 export const CREATE_USER_LOADING = 'CREATE_USER_LOADING'
 export const CREATE_USER_FAIL = 'CREATE_USER_FAIL'
@@ -44,6 +46,7 @@ export type UserActionTypes =
   | { type: 'LOGIN_USER_SUCCESS'; payload: UserType }
   | { type: 'LOGIN_USER_LOADING' }
   | { type: 'LOGIN_USER_FAIL' }
+  | { type: 'LOGOUT_USER' }
   | { type: 'CREATE_USER_SUCCESS'; payload: UserType }
   | { type: 'CREATE_USER_LOADING' }
   | { type: 'CREATE_USER_FAIL' }

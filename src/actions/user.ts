@@ -10,6 +10,7 @@ import {
   LOGIN_USER_LOADING,
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
+  LOGOUT_USER,
   CREATE_USER_LOADING,
   CREATE_USER_SUCCESS,
   CREATE_USER_FAIL,
@@ -53,7 +54,7 @@ export const getUser = () => async (dispatch: Dispatch<UserActionTypes>) => {
 
 export const loginUser =
   (loginData: { email: string; password: string }) =>
-  async (dispatch: Dispatch<UserActionTypes>) => {
+  async (dispatch: Dispatch<UserActionTypes> & Dispatch<AlertActionTypes>) => {
     try {
       dispatch({
         type: LOGIN_USER_LOADING,
@@ -90,11 +91,13 @@ export const loginUser =
         payload: user,
       })
     } catch (error) {
-      // const errors = error.response.data.errors
+      const errors = error.response.data.errors
 
-      // if (errors) {
-      //   errors.forEach((error) => dispatch(setAlert(error.msg, 'error')))
-      // }
+      if (errors) {
+        errors.forEach((error: any) => {
+          dispatch(addAlert(AlertVariants.error, error.msg))
+        })
+      }
 
       dispatch({
         type: LOGIN_USER_FAIL,
@@ -155,3 +158,9 @@ export const createUser =
       })
     }
   }
+
+export const logoutUser = () => (dispatch: Dispatch<UserActionTypes>) => {
+  dispatch({
+    type: LOGOUT_USER,
+  })
+}

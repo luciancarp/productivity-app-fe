@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 import ThemeSwitcher from './ThemeSwitcher'
+import Aside from './Aside'
 
 type Props = { children?: React.ReactNode }
 
@@ -9,6 +10,7 @@ const Layout = ({ children }: Props) => {
     <Container>
       <ThemeSwitcher />
       <Content>{children}</Content>
+      <Aside />
     </Container>
   )
 }

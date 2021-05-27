@@ -1,33 +1,29 @@
+import { Link as RouterLink, LinkProps } from 'react-router-dom'
+
 import styled from 'styled-components'
 import { itemStyle, pressedItemStyle } from '../style/componentStyles'
 import { spaces } from '../style/global'
 
-type Props = {
-  type?: 'button' | 'submit' | 'reset' | undefined
+type Props = LinkProps & {
   text: string
   pressed?: boolean
   width?: string
-  onClick?: React.MouseEventHandler<HTMLButtonElement> | undefined
+  to: string
 }
 
-const Button = ({
-  type = 'button',
-  text,
-  pressed = false,
-  width,
-  onClick,
-}: Props) => {
+const Link = ({ text, pressed = false, width, to }: Props) => {
   return (
-    <ButtonContainer type={type} width={width} onClick={onClick}>
+    <LinkContainer to={to} width={width}>
       <Text>{text}</Text>
-    </ButtonContainer>
+    </LinkContainer>
   )
 }
-type ButtonContainerType = {
+
+type LinkContainerType = {
   width?: string
 }
 
-const ButtonContainer = styled.button<ButtonContainerType>`
+const LinkContainer = styled(RouterLink)<LinkContainerType>`
   ${itemStyle}
 
   cursor: pointer;
@@ -50,4 +46,4 @@ const Text = styled.h3`
   margin: 0;
 `
 
-export default Button
+export default Link
