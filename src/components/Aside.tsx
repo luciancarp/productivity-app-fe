@@ -18,7 +18,7 @@ const Aside = ({ logoutUser, user }: Props) => (
   <Container>
     {user.isAuthenticated ? (
       <>
-        <h3>User: {user.user.name}</h3>
+        <h3>User: {user.user ? user.user.name : ''}</h3>
         <Button text='Logout' onClick={() => logoutUser()} />
       </>
     ) : (

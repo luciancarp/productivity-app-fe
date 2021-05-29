@@ -18,26 +18,30 @@ const Button = ({
   onClick,
 }: Props) => {
   return (
-    <ButtonContainer type={type} width={width} onClick={onClick}>
+    <ButtonContainer
+      pressed={pressed}
+      type={type}
+      width={width}
+      onClick={onClick}
+    >
       <Text>{text}</Text>
     </ButtonContainer>
   )
 }
 type ButtonContainerType = {
   width?: string
+  pressed: boolean
 }
 
 const ButtonContainer = styled.button<ButtonContainerType>`
-  ${itemStyle}
-
   cursor: pointer;
   padding: ${spaces.narrow};
   width: ${(props) => (props.width ? `${props.width}` : null)};
 
+  ${(props) => (props.pressed ? pressedItemStyle : itemStyle)}
+
   &:active {
     ${pressedItemStyle}
-    padding: ${spaces.narrow};
-    width: ${(props) => (props.width ? `${props.width}` : null)};
   }
 
   display: flex;

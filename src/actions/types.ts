@@ -34,6 +34,7 @@ export const CREATE_USER_LOADING = 'CREATE_USER_LOADING'
 export const CREATE_USER_FAIL = 'CREATE_USER_FAIL'
 
 export type UserType = {
+  id: string
   name: string
   email: string
   date: Date
@@ -61,7 +62,10 @@ export const CREATE_PROJECT_SUCCESS = 'CREATE_PROJECT_SUCCESS'
 export const CREATE_PROJECT_LOADING = 'CREATE_PROJECT_LOADING'
 export const CREATE_PROJECT_FAIL = 'CREATE_PROJECT_FAIL'
 
+export const SELECT_PROJECT = 'SELECT_PROJECT'
+
 export type ProjectType = {
+  id: string
   title: string
   date: Date
 }
@@ -75,3 +79,4 @@ export type ProjectActionTypes =
   | { type: 'CREATE_PROJECT_SUCCESS'; payload: ProjectType }
   | { type: 'CREATE_PROJECT_LOADING' }
   | { type: 'CREATE_PROJECT_FAIL' }
+  | { type: 'SELECT_PROJECT'; payload: string }

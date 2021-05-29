@@ -35,6 +35,7 @@ export const getUser = () => async (dispatch: Dispatch<UserActionTypes>) => {
     const res = await axios.get('/api/user')
 
     const user: UserType = {
+      id: res.data._id,
       name: res.data.name,
       email: res.data.email,
       date: new Date(res.data.date),
@@ -81,6 +82,7 @@ export const loginUser =
       res = await axios.get('/api/user')
 
       const user: UserType = {
+        id: res.data._id,
         name: res.data.name,
         email: res.data.email,
         date: new Date(res.data.date),
@@ -135,6 +137,7 @@ export const createUser =
       res = await axios.get('/api/user')
 
       const user: UserType = {
+        id: res.data._id,
         name: res.data.name,
         email: res.data.email,
         date: new Date(res.data.date),

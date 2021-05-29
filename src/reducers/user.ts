@@ -17,17 +17,13 @@ import setAuthToken from '../utils/setAuthToken'
 type InitialStateType = {
   loading: boolean
   isAuthenticated: boolean
-  user: UserType
+  user?: UserType
 }
 
 const initialState: InitialStateType = {
   loading: false,
   isAuthenticated: false,
-  user: {
-    name: '',
-    email: '',
-    date: new Date(),
-  },
+  user: undefined,
 }
 
 const userReducer = (

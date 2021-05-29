@@ -10,6 +10,8 @@ import {
   CREATE_PROJECT_LOADING,
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_FAIL,
+  SELECT_PROJECT,
+  ProjectType,
 } from './types'
 import axios from 'axios'
 import { addAlert } from './alert'
@@ -24,6 +26,7 @@ export const getProjects =
       const res = await axios.get('/api/project/user')
 
       const projects: ProjectsType = res.data.map((project: any) => ({
+        id: project._id,
         title: project.title,
         date: new Date(project.date),
       }))
@@ -61,7 +64,11 @@ export const createProject =
 
       let res = await axios.post('/api/project/', body, config)
 
-      const newProject = res.data
+      const newProject: ProjectType = {
+        id: res.data._id,
+        title: res.data.title,
+        date: new Date(res.data.date),
+      }
 
       dispatch({
         type: CREATE_PROJECT_SUCCESS,
@@ -81,3 +88,10 @@ export const createProject =
       })
     }
   }
+
+export function selectProject(id: string): ProjectActionTypes {
+  return {
+    type: SELECT_PROJECT,
+    payload: id,
+  }
+}

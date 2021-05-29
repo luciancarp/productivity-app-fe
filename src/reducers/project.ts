@@ -5,18 +5,24 @@ import {
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_LOADING,
   CREATE_PROJECT_FAIL,
+  SELECT_PROJECT,
   ProjectActionTypes,
   ProjectsType,
+  ProjectType,
 } from '../actions/types'
 
 type InitialStateType = {
   loading: boolean
   projects: ProjectsType
+  selectedProject?: string
+  project?: ProjectType
 }
 
 const initialState: InitialStateType = {
   loading: false,
   projects: [],
+  project: undefined,
+  selectedProject: undefined,
 }
 
 const projectReducer = (
@@ -55,6 +61,11 @@ const projectReducer = (
         ...state,
         loading: false,
         projects: [...state.projects, action.payload],
+      }
+    case SELECT_PROJECT:
+      return {
+        ...state,
+        selectedProject: action.payload,
       }
     default:
       return state

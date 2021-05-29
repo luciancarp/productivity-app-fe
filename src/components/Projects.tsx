@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
-import { getProjects, createProject } from '../actions/project'
+import { getProjects, createProject, selectProject } from '../actions/project'
 
 import Input from './Input'
 import Button from './Button'
@@ -13,14 +13,19 @@ import { spaces } from '../style/global'
 const mapStateToProps = (state: RootStore) => ({
   project: state.project,
 })
-const connector = connect(mapStateToProps, { getProjects, createProject })
+const connector = connect(mapStateToProps, {
+  getProjects,
+  createProject,
+  selectProject,
+})
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {}
 
 const Projects = ({
   getProjects,
   createProject,
-  project: { projects },
+  selectProject,
+  project: { projects, selectedProject },
 }: Props) => {
   useEffect(() => {
     getProjects()
@@ -50,9 +55,17 @@ const Projects = ({
         </Row>
       </StyledForm>
       <h1>Projects</h1>
-      {projects.map((project) => (
-        <ProjectTitle>{project.title}</ProjectTitle>
-      ))}
+      <ListContainer>
+        {projects.map((project) => (
+          <Project>
+            <Button
+              text={project.title}
+              onClick={() => selectProject(project.id)}
+              pressed={project.id === selectedProject}
+            />
+          </Project>
+        ))}
+      </ListContainer>
     </Container>
   )
 }
@@ -79,6 +92,8 @@ const Row = styled.div`
   justify-content: center;
 `
 
-const ProjectTitle = styled.h3``
+const ListContainer = styled.ul``
+
+const Project = styled.li``
 
 export default connector(Projects)
