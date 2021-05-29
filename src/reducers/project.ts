@@ -6,6 +6,9 @@ import {
   CREATE_PROJECT_LOADING,
   CREATE_PROJECT_FAIL,
   SELECT_PROJECT,
+  GET_PROJECT_SUCCESS,
+  GET_PROJECT_LOADING,
+  GET_PROJECT_FAIL,
   ProjectActionTypes,
   ProjectsType,
   ProjectType,
@@ -66,6 +69,23 @@ const projectReducer = (
       return {
         ...state,
         selectedProject: action.payload,
+      }
+    case GET_PROJECT_FAIL:
+      return {
+        ...state,
+        loading: false,
+        project: undefined,
+      }
+    case GET_PROJECT_LOADING:
+      return {
+        ...state,
+        loading: true,
+      }
+    case GET_PROJECT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        project: action.payload,
       }
     default:
       return state

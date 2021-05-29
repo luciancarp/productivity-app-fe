@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { connect, ConnectedProps } from 'react-redux'
@@ -49,6 +50,13 @@ const Projects = ({
     </ProjectsHeaderContainer>
   )
 
+  const history = useHistory()
+
+  const handleSelectProject = (id: string) => {
+    selectProject(id)
+    history.push(`/project/${id}`)
+  }
+
   return (
     <Container>
       {!newProjectMode ? (
@@ -62,7 +70,7 @@ const Projects = ({
           <Project>
             <Button
               text={project.title}
-              onClick={() => selectProject(project.id)}
+              onClick={() => handleSelectProject(project.id)}
               pressed={project.id === selectedProject}
               width='100%'
             />

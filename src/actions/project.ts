@@ -11,6 +11,9 @@ import {
   CREATE_PROJECT_SUCCESS,
   CREATE_PROJECT_FAIL,
   SELECT_PROJECT,
+  GET_PROJECT_SUCCESS,
+  GET_PROJECT_LOADING,
+  GET_PROJECT_FAIL,
   ProjectType,
 } from './types'
 import axios from 'axios'
@@ -85,6 +88,32 @@ export const createProject =
 
       dispatch({
         type: CREATE_PROJECT_FAIL,
+      })
+    }
+  }
+
+export const getProject =
+  (id: string) => async (dispatch: Dispatch<ProjectActionTypes>) => {
+    try {
+      dispatch({
+        type: GET_PROJECT_LOADING,
+      })
+
+      const res = await axios.get(`/api/project/${id}`)
+
+      const project: ProjectType = {
+        id: res.data._id,
+        title: res.data.title,
+        date: new Date(res.data.date),
+      }
+
+      dispatch({
+        type: GET_PROJECT_SUCCESS,
+        payload: project,
+      })
+    } catch (e) {
+      dispatch({
+        type: GET_PROJECT_FAIL,
       })
     }
   }

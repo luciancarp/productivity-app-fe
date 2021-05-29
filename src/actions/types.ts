@@ -64,6 +64,10 @@ export const CREATE_PROJECT_FAIL = 'CREATE_PROJECT_FAIL'
 
 export const SELECT_PROJECT = 'SELECT_PROJECT'
 
+export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS'
+export const GET_PROJECT_LOADING = 'GET_PROJECT_LOADING'
+export const GET_PROJECT_FAIL = 'GET_PROJECT_FAIL'
+
 export type ProjectType = {
   id: string
   title: string
@@ -80,3 +84,6 @@ export type ProjectActionTypes =
   | { type: 'CREATE_PROJECT_LOADING' }
   | { type: 'CREATE_PROJECT_FAIL' }
   | { type: 'SELECT_PROJECT'; payload: string }
+  | { type: 'GET_PROJECT_SUCCESS'; payload: ProjectType }
+  | { type: 'GET_PROJECT_LOADING' }
+  | { type: 'GET_PROJECT_FAIL' }
