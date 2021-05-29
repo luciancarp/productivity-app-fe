@@ -68,6 +68,10 @@ export const GET_PROJECT_SUCCESS = 'GET_PROJECT_SUCCESS'
 export const GET_PROJECT_LOADING = 'GET_PROJECT_LOADING'
 export const GET_PROJECT_FAIL = 'GET_PROJECT_FAIL'
 
+export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS'
+export const DELETE_PROJECT_LOADING = 'DELETE_PROJECT_LOADING'
+export const DELETE_PROJECT_FAIL = 'DELETE_PROJECT_FAIL'
+
 export type ProjectType = {
   id: string
   title: string
@@ -87,3 +91,6 @@ export type ProjectActionTypes =
   | { type: 'GET_PROJECT_SUCCESS'; payload: ProjectType }
   | { type: 'GET_PROJECT_LOADING' }
   | { type: 'GET_PROJECT_FAIL' }
+  | { type: 'DELETE_PROJECT_SUCCESS'; payload: string }
+  | { type: 'DELETE_PROJECT_LOADING' }
+  | { type: 'DELETE_PROJECT_FAIL' }

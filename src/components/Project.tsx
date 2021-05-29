@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
-import { getProject } from '../actions/project'
+import { deleteProject, getProject } from '../actions/project'
 
 import { spaces } from '../style/global'
 import { itemStyle } from '../style/componentStyles'
+
+import Button from './Button'
 
 interface IParams {
   id: string
@@ -18,19 +20,26 @@ interface IMatch extends RouteComponentProps<IParams> {}
 const mapStateToProps = (state: RootStore) => ({
   project: state.project,
 })
-const connector = connect(mapStateToProps, { getProject })
+const connector = connect(mapStateToProps, { getProject, deleteProject })
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {}
 
-const Project = ({ project, match, getProject }: Props & IMatch) => {
+const Project = ({
+  project,
+  match,
+  getProject,
+  deleteProject,
+}: Props & IMatch) => {
   useEffect(() => {
     getProject(match.params.id)
   }, [getProject, match.params.id])
 
   return (
     <Container>
-      <ProjectTitle>{project.project?.title}</ProjectTitle>
-      <h3>{JSON.stringify(project.project)}</h3>
+      <ProjectHeader>
+        <ProjectTitle>{project.project?.title}</ProjectTitle>
+        <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
+      </ProjectHeader>
     </Container>
   )
 }
@@ -42,10 +51,20 @@ const Container = styled.div`
 
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 `
 
-const ProjectTitle = styled.h3``
+const ProjectTitle = styled.h2``
+
+const ProjectHeader = styled.div`
+  width: 100%;
+  margin: 0 0 ${spaces.regular} 0;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
 
 export default connector(Project)

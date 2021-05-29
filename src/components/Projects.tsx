@@ -85,8 +85,6 @@ const Container = styled.header`
   grid-area: 'header';
 
   width: 100%;
-
-  padding: ${spaces.narrow};
 `
 
 const ListContainer = styled.ul`

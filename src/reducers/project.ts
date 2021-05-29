@@ -9,6 +9,9 @@ import {
   GET_PROJECT_SUCCESS,
   GET_PROJECT_LOADING,
   GET_PROJECT_FAIL,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_LOADING,
+  DELETE_PROJECT_FAIL,
   ProjectActionTypes,
   ProjectsType,
   ProjectType,
@@ -86,6 +89,25 @@ const projectReducer = (
         ...state,
         loading: false,
         project: action.payload,
+      }
+    case DELETE_PROJECT_FAIL:
+      return {
+        ...state,
+        loading: false,
+      }
+    case DELETE_PROJECT_LOADING:
+      return {
+        ...state,
+        loading: true,
+      }
+    case DELETE_PROJECT_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        projects: state.projects.filter(
+          (project) => project.id !== action.payload
+        ),
+        project: undefined,
       }
     default:
       return state

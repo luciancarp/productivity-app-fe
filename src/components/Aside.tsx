@@ -18,11 +18,10 @@ const Aside = ({ logoutUser, user }: Props) => (
   <Container>
     {user.isAuthenticated ? (
       <>
-        <h3>User: {user.user ? user.user.name : ''}</h3>
-        <Button text='Logout' onClick={() => logoutUser()} />
+        <Button text='Logout' onClick={() => logoutUser()} width='100%' />
       </>
     ) : (
-      <Link text='Login' to='/login' />
+      <Link text='Login' to='/login' width='100%' />
     )}
   </Container>
 )
@@ -30,10 +29,12 @@ const Aside = ({ logoutUser, user }: Props) => (
 const Container = styled.aside`
   grid-area: 'aside';
 
+  width: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 `
 
 export default connector(Aside)

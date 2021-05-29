@@ -14,6 +14,9 @@ import {
   GET_PROJECT_SUCCESS,
   GET_PROJECT_LOADING,
   GET_PROJECT_FAIL,
+  DELETE_PROJECT_SUCCESS,
+  DELETE_PROJECT_LOADING,
+  DELETE_PROJECT_FAIL,
   ProjectType,
 } from './types'
 import axios from 'axios'
@@ -114,6 +117,32 @@ export const getProject =
     } catch (e) {
       dispatch({
         type: GET_PROJECT_FAIL,
+      })
+    }
+  }
+
+export const deleteProject =
+  (id: string) => async (dispatch: Dispatch<ProjectActionTypes>) => {
+    try {
+      dispatch({
+        type: DELETE_PROJECT_LOADING,
+      })
+
+      const res = await axios.delete(`/api/project/${id}`)
+
+      const project: ProjectType = {
+        id: res.data._id,
+        title: res.data.title,
+        date: new Date(res.data.date),
+      }
+
+      dispatch({
+        type: DELETE_PROJECT_SUCCESS,
+        payload: project.id,
+      })
+    } catch (e) {
+      dispatch({
+        type: DELETE_PROJECT_FAIL,
       })
     }
   }
