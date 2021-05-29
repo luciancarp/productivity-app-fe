@@ -6,7 +6,7 @@ import { RootStore } from '../store'
 import { createUser } from '../actions/user'
 
 import styled from 'styled-components'
-import ThemeSwitcher from './ThemeSwitcher'
+// import ThemeSwitcher from './ThemeSwitcher'
 import { itemStyle } from '../style/componentStyles'
 import { spaces } from '../style/global'
 import Input from './Input'
@@ -40,7 +40,7 @@ const SignUp = ({ createUser, user }: Props) => {
 
   return (
     <Container>
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
       <Content>
         <Title>Sign Up</Title>
 

@@ -28,6 +28,7 @@ const NewProjectForm = ({ createProject, changeNewProjectMode }: Props) => {
   const onSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     createProject(formData)
+    changeNewProjectMode(false)
   }
 
   return (

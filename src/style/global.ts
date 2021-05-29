@@ -15,6 +15,7 @@ export const spaces = {
   narrow: '0.75rem',
   regular: '1rem',
   wide: '1.45rem',
+  large: '3rem',
   spacer: '7rem',
 }
 

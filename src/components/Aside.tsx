@@ -4,6 +4,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
 import { logoutUser } from '../actions/user'
 
+import { spaces } from '../style/global'
+
 import Button from './Button'
 import Link from './Link'
 import ThemeSwitcher from './ThemeSwitcher'
@@ -54,6 +56,7 @@ const ThemeSwitcherContainer = styled.div`
 
 const ButtonContainer = styled.div`
   width: 100%;
+  margin: 0 0 ${spaces.regular} 0;
 `
 
 export default connector(Aside)
