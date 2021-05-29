@@ -5,8 +5,8 @@ import { connect, ConnectedProps } from 'react-redux'
 import { RootStore } from '../store'
 import { getProjects, createProject, selectProject } from '../actions/project'
 
-import Input from './Input'
 import Button from './Button'
+import NewProjectForm from './NewProjectForm'
 
 import { spaces } from '../style/global'
 
@@ -31,30 +31,32 @@ const Projects = ({
     getProjects()
   }, [getProjects])
 
-  const [formData, setFormData] = useState({
-    title: '',
-  })
+  const [newProjectMode, setNewProjectMode] = useState(false)
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>): void =>
-    setFormData({ ...formData, [e.currentTarget.name]: e.currentTarget.value })
-
-  const onSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    createProject(formData)
+  const changeNewProjectMode = (value: boolean) => {
+    setNewProjectMode(value)
   }
+
+  const ProjectsHeader = () => (
+    <ProjectsHeaderContainer>
+      <HeaderTitle>Projects</HeaderTitle>
+      <Button
+        text='➕'
+        onClick={() => {
+          setNewProjectMode(true)
+        }}
+      />
+    </ProjectsHeaderContainer>
+  )
 
   return (
     <Container>
-      <StyledForm noValidate onSubmit={onSubmit}>
-        <Row>
-          <Input label='Title' name='title' onChange={onChange} />
-        </Row>
+      {!newProjectMode ? (
+        <ProjectsHeader />
+      ) : (
+        <NewProjectForm changeNewProjectMode={changeNewProjectMode} />
+      )}
 
-        <Row>
-          <Button type='submit' text='Create Project' />
-        </Row>
-      </StyledForm>
-      <h1>Projects</h1>
       <ListContainer>
         {projects.map((project) => (
           <Project>
@@ -62,6 +64,7 @@ const Projects = ({
               text={project.title}
               onClick={() => selectProject(project.id)}
               pressed={project.id === selectedProject}
+              width='100%'
             />
           </Project>
         ))}
@@ -73,27 +76,37 @@ const Projects = ({
 const Container = styled.header`
   grid-area: 'header';
 
+  width: 100%;
+
+  padding: ${spaces.narrow};
+`
+
+const ListContainer = styled.ul`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  > :last-child {
+    margin: 0;
+  }
 `
 
-const StyledForm = styled.form`
+const Project = styled.li`
   width: 100%;
+  margin: 0 0 ${spaces.regular} 0;
 `
 
-const Row = styled.div`
-  margin-bottom: ${spaces.regular};
+const HeaderTitle = styled.h1`
+  margin: 0;
+`
 
+const ProjectsHeaderContainer = styled.div`
+  margin: 0 0 ${spaces.regular} 0;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `
-
-const ListContainer = styled.ul``
-
-const Project = styled.li``
 
 export default connector(Projects)

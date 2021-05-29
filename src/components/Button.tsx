@@ -35,13 +35,15 @@ type ButtonContainerType = {
 
 const ButtonContainer = styled.button<ButtonContainerType>`
   cursor: pointer;
-  padding: ${spaces.narrow};
+
   width: ${(props) => (props.width ? `${props.width}` : null)};
 
   ${(props) => (props.pressed ? pressedItemStyle : itemStyle)}
+  padding: ${spaces.narrow};
 
   &:active {
     ${pressedItemStyle}
+    padding: ${spaces.narrow};
   }
 
   display: flex;
