@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-import ThemeSwitcher from './ThemeSwitcher'
+// import ThemeSwitcher from './ThemeSwitcher'
 import Aside from './Aside'
 import Projects from './Projects'
 
@@ -9,7 +9,7 @@ type Props = { children?: React.ReactNode }
 const Layout = ({ children }: Props) => {
   return (
     <Container>
-      <ThemeSwitcher />
+      {/* <ThemeSwitcher /> */}
       <GridContainer>
         <Projects />
         <Content>{children}</Content>
@@ -20,9 +20,9 @@ const Layout = ({ children }: Props) => {
 }
 
 const Container = styled.div`
-  display: flex;
+  /* display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; */
 `
 
 const Content = styled.main`
