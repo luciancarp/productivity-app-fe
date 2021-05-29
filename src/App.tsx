@@ -11,7 +11,7 @@ import GlobalStyle from './style/GlobalStyle'
 
 import Login from './components/Login'
 import SignUp from './components/SignUp'
-import Projects from './components/Projects'
+import Project from './components/Project'
 import Layout from './components/Layout'
 import Alerts from './components/Alerts'
 
@@ -34,7 +34,7 @@ const App = () => {
             <Route exact path='/signup' component={SignUp} />
             <Route exact path='/login' component={Login} />
             <Layout>
-              <Route exact path='/' component={Projects} />
+              <Route exact path='/project/:id' component={Project} />
             </Layout>
           </Switch>
         </Router>

@@ -27,7 +27,9 @@ const Aside = ({ logoutUser, user }: Props) => (
   </Container>
 )
 
-const Container = styled.div`
+const Container = styled.aside`
+  grid-area: 'aside';
+
   display: flex;
   flex-direction: column;
   align-items: center;

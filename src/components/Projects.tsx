@@ -57,7 +57,9 @@ const Projects = ({
   )
 }
 
-const Container = styled.div`
+const Container = styled.header`
+  grid-area: 'header';
+
   display: flex;
   flex-direction: column;
   align-items: center;
