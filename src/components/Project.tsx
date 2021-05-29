@@ -10,6 +10,7 @@ import { spaces } from '../style/global'
 import { itemStyle } from '../style/componentStyles'
 
 import Button from './Button'
+import Loading from './Loading'
 
 interface IParams {
   id: string
@@ -36,10 +37,14 @@ const Project = ({
 
   return (
     <Container>
-      <ProjectHeader>
-        <ProjectTitle>{project.project?.title}</ProjectTitle>
-        <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
-      </ProjectHeader>
+      {project.loading ? (
+        <Loading />
+      ) : (
+        <ProjectHeader>
+          <ProjectTitle>{project.project?.title}</ProjectTitle>
+          <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
+        </ProjectHeader>
+      )}
     </Container>
   )
 }
