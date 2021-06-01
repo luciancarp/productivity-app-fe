@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import store from './store'
 import { getUser } from './actions/user'
-import setAuthToken from './utils/setAuthToken'
+import tokenUtility from './utils/tokenUtility'
 
 import { ThemeProvider } from './style/Theme'
 import GlobalStyle from './style/GlobalStyle'
@@ -16,12 +16,12 @@ import Layout from './components/Layout'
 import Alerts from './components/Alerts'
 
 if (localStorage.token) {
-  setAuthToken(localStorage.token)
+  tokenUtility.setAuthToken(localStorage.token)
 }
 
 const App = () => {
   useEffect(() => {
-    store.dispatch<any>(getUser())
+    if (localStorage.token) store.dispatch<any>(getUser())
   }, [])
 
   return (

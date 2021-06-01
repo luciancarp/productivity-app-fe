@@ -18,7 +18,7 @@ import {
   AlertVariants,
 } from './types'
 
-import setAuthToken from '../utils/setAuthToken'
+import tokenUtility from '../utils/tokenUtility'
 
 import { addAlert } from './alert'
 
@@ -76,7 +76,7 @@ export const loginUser =
 
       if (res.data.token) {
         localStorage.setItem('token', res.data.token)
-        setAuthToken(res.data.token)
+        tokenUtility.setAuthToken(res.data.token)
       }
 
       res = await axios.get('/api/user')
@@ -131,7 +131,7 @@ export const createUser =
 
       if (res.data.token) {
         localStorage.setItem('token', res.data.token)
-        setAuthToken(res.data.token)
+        tokenUtility.setAuthToken(res.data.token)
       }
 
       res = await axios.get('/api/user')

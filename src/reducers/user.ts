@@ -12,7 +12,7 @@ import {
   UserActionTypes,
   UserType,
 } from '../actions/types'
-import setAuthToken from '../utils/setAuthToken'
+import tokenUtility from '../utils/tokenUtility'
 
 type InitialStateType = {
   loading: boolean
@@ -68,7 +68,7 @@ const userReducer = (
       }
     case LOGOUT_USER:
       localStorage.removeItem('token')
-      setAuthToken()
+      tokenUtility.setAuthToken()
       return {
         ...state,
         ...initialState,

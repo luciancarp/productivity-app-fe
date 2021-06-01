@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App takes a snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="Toastify"
+  />
+  <div
+    class="sc-jJoQpE jYLPoN"
+  >
+    <div
+      class="sc-gWXaA-D iNHUpL"
+    >
+      <header
+        class="sc-giYgFv jvFgBx"
+      >
+        <div
+          class="sc-ikJzcn hgaiKi"
+        >
+          <h1
+            class="sc-kLwgWK jskzYa"
+          >
+            Projects
+          </h1>
+          <button
+            class="sc-eCImvq kUxYQR"
+            type="button"
+          >
+            <h3
+              class="sc-jRQAMF bXdgTm"
+            >
+              ➕
+            </h3>
+          </button>
+        </div>
+        <ul
+          class="sc-ezbkgU bdKttU"
+        />
+      </header>
+      <main
+        class="sc-hiCivh jMaUs"
+      />
+      <aside
+        class="sc-fKVsgm iBfyaE"
+      >
+        <div
+          class="sc-iwjezw jVmKbk"
+        >
+          <a
+            class="sc-dlVyqM dMIEZR"
+            href="/login"
+            width="100%"
+          >
+            <h3
+              class="sc-kfPtPH kkMnqs"
+            >
+              Login
+            </h3>
+          </a>
+        </div>
+        <div
+          class="sc-bBHwJV dCPqby"
+        >
+          <button
+            class="sc-eCImvq kUxYQR"
+            type="button"
+          >
+            <h3
+              class="sc-jRQAMF bXdgTm"
+            >
+              🌙
+            </h3>
+          </button>
+        </div>
+      </aside>
+    </div>
+  </div>
+</DocumentFragment>
+`;

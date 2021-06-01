@@ -8,4 +8,6 @@ const setAuthToken = (token?: string) => {
   }
 }
 
-export default setAuthToken
+const exportObject = { setAuthToken }
+
+export default exportObject
