@@ -40,7 +40,6 @@ const Login = ({ loginUser, user }: Props) => {
 
   return (
     <Container>
-      {/* <ThemeSwitcher /> */}
       <Content>
         <Title>Login</Title>
 

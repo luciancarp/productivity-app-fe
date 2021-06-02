@@ -19,6 +19,7 @@ describe('App', () => {
     expect(asFragment()).toMatchSnapshot()
   })
 
+  // TODO
   // it('sets auth token if it is stored in localStorage', () => {})
   // it('fetches user info', () => {})
   // it('contains a Provider component', () => {})

@@ -14,7 +14,7 @@ const Input = ({ label, type, name, onChange }: Props) => {
     <Container>
       <label>
         {label ? `${label}: ` : null}
-        <input type={type} name={name} onChange={onChange} />
+        <input aria-label={label} type={type} name={name} onChange={onChange} />
       </label>
     </Container>
   )
