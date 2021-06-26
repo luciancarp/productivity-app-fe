@@ -18,6 +18,8 @@ import {
   DELETE_PROJECT_LOADING,
   DELETE_PROJECT_FAIL,
   ProjectType,
+  TaskActionTypes,
+  CLEAR_TASKS,
 } from './types'
 import axios from 'axios'
 import { addAlert } from './alert'
@@ -147,9 +149,14 @@ export const deleteProject =
     }
   }
 
-export function selectProject(id: string): ProjectActionTypes {
-  return {
-    type: SELECT_PROJECT,
-    payload: id,
+export const selectProject =
+  (id: string) =>
+  (dispatch: Dispatch<ProjectActionTypes> & Dispatch<TaskActionTypes>) => {
+    dispatch({
+      type: SELECT_PROJECT,
+      payload: id,
+    })
+    dispatch({
+      type: CLEAR_TASKS,
+    })
   }
-}

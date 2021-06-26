@@ -95,7 +95,6 @@ export type ProjectActionTypes =
   | { type: 'DELETE_PROJECT_LOADING' }
   | { type: 'DELETE_PROJECT_FAIL' }
 
-
 // Task
 
 export const GET_TASKS_SUCCESS = 'GET_TASKS_SUCCESS'
@@ -109,6 +108,8 @@ export const CREATE_TASK_FAIL = 'CREATE_TASK_FAIL'
 export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
 export const DELETE_TASK_LOADING = 'DELETE_TASK_LOADING'
 export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL'
+
+export const CLEAR_TASKS = 'CLEAR_TASKS'
 
 export type TaskType = {
   id: string
@@ -131,3 +132,4 @@ export type TaskActionTypes =
   | { type: 'DELETE_TASK_SUCCESS'; payload: string }
   | { type: 'DELETE_TASK_LOADING' }
   | { type: 'DELETE_TASK_FAIL' }
+  | { type: 'CLEAR_TASKS' }

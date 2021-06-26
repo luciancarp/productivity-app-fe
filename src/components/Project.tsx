@@ -40,12 +40,18 @@ const Project = ({
     <Container>
       {project.loading ? (
         <Loading />
-      ) : (<>
-        <ProjectHeader>
-          <ProjectTitle>{project.project?.title}</ProjectTitle>
-          <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
-        </ProjectHeader>
-        <Tasks projectId = {project.project?.id || ''}/>
+      ) : (
+        <>
+          <ProjectHeader>
+            <ProjectTitle>{project.project?.title}</ProjectTitle>
+            <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
+          </ProjectHeader>
+          <ContentContainer>
+            <StagesContainer>
+              <h3>Stages</h3>
+            </StagesContainer>
+            <Tasks projectId={project.project?.id || ''} />
+          </ContentContainer>
         </>
       )}
     </Container>
@@ -53,7 +59,8 @@ const Project = ({
 }
 
 const Container = styled.div`
-  height: 400px;
+  /* height: 400px; */
+  height: 100%;
 
   ${itemStyle}
 
@@ -63,16 +70,30 @@ const Container = styled.div`
   justify-content: flex-start;
 `
 
-const ProjectTitle = styled.h2``
+const ProjectTitle = styled.h1``
 
 const ProjectHeader = styled.div`
   width: 100%;
-  margin: 0 0 ${spaces.regular} 0;
+  margin: 0 0 ${spaces.large} 0;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`
+
+const ContentContainer = styled.div`
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+`
+const StagesContainer = styled.div`
+  height: 100%;
+  min-width: 200px;
 `
 
 export default connector(Project)

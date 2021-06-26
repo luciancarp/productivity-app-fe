@@ -10,6 +10,7 @@ import NewTaskForm from './NewTaskForm'
 import Task from './Task'
 
 import { spaces } from '../style/global'
+import { pressedItemStyle } from '../style/componentStyles'
 
 const mapStateToProps = (state: RootStore) => ({
   task: state.task,
@@ -50,25 +51,60 @@ const Tasks = ({ getTasks, projectId, task: { tasks, loading } }: Props) => {
       ) : (
         <NewTaskForm changeNewTaskMode={changeNewTaskMode} />
       )}
-      {tasks.map((task) => (
-        <Task id={task.id} title={task.title} time={task.time} />
-      ))}
+      <TaskListContainer>
+        <TasksList>
+          {tasks.map((task) => (
+            <Task id={task.id} title={task.title} time={task.time} />
+          ))}
+        </TasksList>
+      </TaskListContainer>
     </Container>
   )
 }
 
-const Container = styled.header`
-  grid-area: 'header';
-
+const Container = styled.div`
   width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 `
 
-const HeaderTitle = styled.h1`
+const TaskListContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+`
+
+const TasksList = styled.div`
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /* firefox */
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  ${pressedItemStyle}
+`
+
+const HeaderTitle = styled.h2`
   margin: 0;
 `
 
 const TasksHeaderContainer = styled.div`
+  width: 100%;
+
   margin: 0 0 ${spaces.regular} 0;
+
   display: flex;
   flex-direction: row;
   align-items: center;
