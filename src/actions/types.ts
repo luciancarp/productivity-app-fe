@@ -94,3 +94,40 @@ export type ProjectActionTypes =
   | { type: 'DELETE_PROJECT_SUCCESS'; payload: string }
   | { type: 'DELETE_PROJECT_LOADING' }
   | { type: 'DELETE_PROJECT_FAIL' }
+
+
+// Task
+
+export const GET_TASKS_SUCCESS = 'GET_TASKS_SUCCESS'
+export const GET_TASKS_LOADING = 'GET_TASKS_LOADING'
+export const GET_TASKS_FAIL = 'GET_TASKS_FAIL'
+
+export const CREATE_TASK_SUCCESS = 'CREATE_TASK_SUCCESS'
+export const CREATE_TASK_LOADING = 'CREATE_TASK_LOADING'
+export const CREATE_TASK_FAIL = 'CREATE_TASK_FAIL'
+
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS'
+export const DELETE_TASK_LOADING = 'DELETE_TASK_LOADING'
+export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL'
+
+export type TaskType = {
+  id: string
+  title: string
+  project: string
+  time: string
+  done: boolean
+  date: Date
+}
+
+export type TasksType = TaskType[]
+
+export type TaskActionTypes =
+  | { type: 'GET_TASKS_SUCCESS'; payload: TasksType }
+  | { type: 'GET_TASKS_LOADING' }
+  | { type: 'GET_TASKS_FAIL' }
+  | { type: 'CREATE_TASK_SUCCESS'; payload: TaskType }
+  | { type: 'CREATE_TASK_LOADING' }
+  | { type: 'CREATE_TASK_FAIL' }
+  | { type: 'DELETE_TASK_SUCCESS'; payload: string }
+  | { type: 'DELETE_TASK_LOADING' }
+  | { type: 'DELETE_TASK_FAIL' }

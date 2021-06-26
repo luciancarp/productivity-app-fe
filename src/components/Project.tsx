@@ -11,6 +11,7 @@ import { itemStyle } from '../style/componentStyles'
 
 import Button from './Button'
 import Loading from './Loading'
+import Tasks from './Tasks'
 
 interface IParams {
   id: string
@@ -39,11 +40,13 @@ const Project = ({
     <Container>
       {project.loading ? (
         <Loading />
-      ) : (
+      ) : (<>
         <ProjectHeader>
           <ProjectTitle>{project.project?.title}</ProjectTitle>
           <Button text='🗑️' onClick={() => deleteProject(match.params.id)} />
         </ProjectHeader>
+        <Tasks projectId = {project.project?.id || ''}/>
+        </>
       )}
     </Container>
   )
