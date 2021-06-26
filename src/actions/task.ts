@@ -1,25 +1,25 @@
 import { Dispatch } from 'redux'
 import {
-    GET_TASKS_SUCCESS,
-    GET_TASKS_LOADING,
-    GET_TASKS_FAIL,
-    CREATE_TASK_SUCCESS,
-    CREATE_TASK_LOADING,
-    CREATE_TASK_FAIL,
-    DELETE_TASK_SUCCESS,
-    DELETE_TASK_LOADING,
-    DELETE_TASK_FAIL,
-    TaskActionTypes,
-    TaskType,
-    TasksType,
-    AlertActionTypes,
-    AlertVariants,
+  GET_TASKS_SUCCESS,
+  GET_TASKS_LOADING,
+  GET_TASKS_FAIL,
+  CREATE_TASK_SUCCESS,
+  CREATE_TASK_LOADING,
+  CREATE_TASK_FAIL,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_LOADING,
+  DELETE_TASK_FAIL,
+  TaskActionTypes,
+  TaskType,
+  TasksType,
+  AlertActionTypes,
+  AlertVariants,
 } from './types'
 import axios from 'axios'
 import { addAlert } from './alert'
 
 export const getTasks =
-(projectId: string) => async (dispatch: Dispatch<TaskActionTypes>) => {
+  (projectId: string) => async (dispatch: Dispatch<TaskActionTypes>) => {
     try {
       dispatch({
         type: GET_TASKS_LOADING,
@@ -48,10 +48,8 @@ export const getTasks =
   }
 
 export const createTask =
-  (newTaskData: { title: string, project: string, time: string }) =>
-  async (
-    dispatch: Dispatch<TaskActionTypes> & Dispatch<AlertActionTypes>
-  ) => {
+  (newTaskData: { title: string; project: string; time: string }) =>
+  async (dispatch: Dispatch<TaskActionTypes> & Dispatch<AlertActionTypes>) => {
     try {
       dispatch({
         type: CREATE_TASK_LOADING,
@@ -64,7 +62,7 @@ export const createTask =
       }
 
       const body = JSON.stringify({
-        ...newTaskData
+        ...newTaskData,
       })
 
       let res = await axios.post('/api/task/', body, config)
@@ -97,7 +95,7 @@ export const createTask =
     }
   }
 
-export const deleteProject =
+export const deleteTask =
   (id: string) => async (dispatch: Dispatch<TaskActionTypes>) => {
     try {
       dispatch({
