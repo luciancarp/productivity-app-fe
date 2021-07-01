@@ -53,8 +53,10 @@ const Projects = ({
   const history = useHistory()
 
   const handleSelectProject = (id: string) => {
-    selectProject(id)
-    history.push(`/project/${id}`)
+    if (selectedProject !== id) {
+      selectProject(id)
+      history.push(`/project/${id}`)
+    }
   }
 
   return (

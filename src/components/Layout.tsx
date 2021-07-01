@@ -5,6 +5,7 @@ import { spaces } from '../style/global'
 // import ThemeSwitcher from './ThemeSwitcher'
 import Aside from './Aside'
 import Projects from './Projects'
+import CurrentTask from './CurrentTask'
 
 type Props = { children?: React.ReactNode }
 
@@ -14,7 +15,10 @@ const Layout = ({ children }: Props) => {
       {/* <ThemeSwitcher /> */}
       <GridContainer>
         <Projects />
-        <Content>{children}</Content>
+        <Middle>
+          <CurrentTask />
+          <Content>{children}</Content>
+        </Middle>
         <Aside />
       </GridContainer>
     </Container>
@@ -29,9 +33,18 @@ const Container = styled.div`
 
 const Content = styled.main`
   grid-area: 'main';
+  height: 100%;
 
   /* margin: 0 auto; */
   /* max-width: 700px; */
+
+  margin: ${spaces.regular} 0 0 0;
+`
+
+const Middle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const GridContainer = styled.div`

@@ -50,7 +50,7 @@ const Project = ({
             <StagesContainer>
               <h3>Stages</h3>
             </StagesContainer>
-            <Tasks projectId={project.project?.id || ''} />
+            <Tasks />
           </ContentContainer>
         </>
       )}

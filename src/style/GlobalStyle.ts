@@ -48,7 +48,7 @@ body,
   h3 {
     margin-bottom: ${spaces.regular};
 
-    font-size: ${fontSizes.medium}
+    font-size: ${fontSizes.regular}
   }
 
   p {

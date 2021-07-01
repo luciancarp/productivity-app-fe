@@ -12,6 +12,7 @@ export const fontSizes = {
 }
 
 export const spaces = {
+  tiny: '0.5rem',
   narrow: '0.75rem',
   regular: '1rem',
   wide: '1.45rem',

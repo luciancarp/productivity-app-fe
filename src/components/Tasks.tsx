@@ -14,17 +14,22 @@ import { pressedItemStyle } from '../style/componentStyles'
 
 const mapStateToProps = (state: RootStore) => ({
   task: state.task,
+  project: state.project,
 })
 const connector = connect(mapStateToProps, {
   getTasks,
 })
 type PropsFromRedux = ConnectedProps<typeof connector>
-type Props = PropsFromRedux & { projectId: string }
+type Props = PropsFromRedux & {}
 
-const Tasks = ({ getTasks, projectId, task: { tasks, loading } }: Props) => {
+const Tasks = ({
+  getTasks,
+  task: { tasks, loading },
+  project: { selectedProject },
+}: Props) => {
   useEffect(() => {
-    getTasks(projectId)
-  }, [getTasks, projectId])
+    getTasks(selectedProject || '')
+  }, [getTasks, selectedProject])
 
   const [newTaskMode, setNewTaskMode] = useState(false)
 
@@ -54,7 +59,12 @@ const Tasks = ({ getTasks, projectId, task: { tasks, loading } }: Props) => {
       <TaskListContainer>
         <TasksList>
           {tasks.map((task) => (
-            <Task id={task.id} title={task.title} time={task.time} />
+            <Task
+              id={task.id}
+              title={task.title}
+              time={task.time}
+              projectId={task.project}
+            />
           ))}
         </TasksList>
       </TaskListContainer>

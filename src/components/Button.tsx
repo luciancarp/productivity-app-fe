@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { itemStyle, pressedItemStyle } from '../style/componentStyles'
+import { itemStyleSmall, pressedItemStyleSmall } from '../style/componentStyles'
 import { spaces } from '../style/global'
 
 type Props = {
@@ -38,12 +38,12 @@ const ButtonContainer = styled.button<ButtonContainerType>`
 
   width: ${(props) => (props.width ? `${props.width}` : null)};
 
-  ${(props) => (props.pressed ? pressedItemStyle : itemStyle)}
-  padding: ${spaces.narrow};
+  ${(props) => (props.pressed ? pressedItemStyleSmall : itemStyleSmall)}
+
+  padding: ${spaces.tiny};
 
   &:active {
-    ${pressedItemStyle}
-    padding: ${spaces.narrow};
+    ${pressedItemStyleSmall}
   }
 
   display: flex;

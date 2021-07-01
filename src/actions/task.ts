@@ -14,6 +14,7 @@ import {
   TasksType,
   AlertActionTypes,
   AlertVariants,
+  SELECT_CURRENT_TASK,
 } from './types'
 import axios from 'axios'
 import { addAlert } from './alert'
@@ -122,4 +123,17 @@ export const deleteTask =
         type: DELETE_TASK_FAIL,
       })
     }
+  }
+
+export const selectCurrentTask =
+  (id: string, projectId: string) => (dispatch: Dispatch<TaskActionTypes>) => {
+    const taskData = {
+      id,
+      projectId,
+    }
+
+    dispatch({
+      type: SELECT_CURRENT_TASK,
+      payload: taskData,
+    })
   }

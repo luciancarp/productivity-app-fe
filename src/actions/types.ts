@@ -111,6 +111,10 @@ export const DELETE_TASK_FAIL = 'DELETE_TASK_FAIL'
 
 export const CLEAR_TASKS = 'CLEAR_TASKS'
 
+export const SELECT_CURRENT_TASK = 'SELECT_CURRENT_TASK'
+export const PLAY_CURRENT_TASK = 'PLAY_CURRENT_TASK'
+export const PAUSE_CURRENT_TASK = 'PAUSE_CURRENT_TASK'
+
 export type TaskType = {
   id: string
   title: string
@@ -133,3 +137,6 @@ export type TaskActionTypes =
   | { type: 'DELETE_TASK_LOADING' }
   | { type: 'DELETE_TASK_FAIL' }
   | { type: 'CLEAR_TASKS' }
+  | { type: 'SELECT_CURRENT_TASK'; payload: { id: string; projectId: string } }
+  | { type: 'PLAY_CURRENT_TASK' }
+  | { type: 'PAUSE_CURRENT_TASK' }

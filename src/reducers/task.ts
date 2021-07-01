@@ -11,25 +11,31 @@ import {
   TaskActionTypes,
   TasksType,
   CLEAR_TASKS,
+  SELECT_CURRENT_TASK,
 } from '../actions/types'
 
 type InitialStateType = {
   loading: boolean
   tasks: TasksType
-  activeTask?: {
-    id: string
-    title: string
-    projectId: string
-    projectTitle: string
-    time: string
-    playing: boolean
+  currentTask: {
+    id?: string
+    title?: string
+    projectId?: string
+    time?: string
+    playing?: boolean
   }
 }
 
 const initialState: InitialStateType = {
   loading: false,
   tasks: [],
-  activeTask: undefined,
+  currentTask: {
+    id: undefined,
+    title: undefined,
+    projectId: undefined,
+    time: undefined,
+    playing: undefined,
+  },
 }
 
 const projectReducer = (
@@ -84,16 +90,30 @@ const projectReducer = (
         ...state,
         loading: false,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
-        activeTask:
-          state.activeTask?.id === action.payload
-            ? undefined
-            : state.activeTask,
+        currentTask:
+          state.currentTask?.id === action.payload
+            ? {
+                id: undefined,
+                title: undefined,
+                projectId: undefined,
+                time: undefined,
+                playing: undefined,
+              }
+            : state.currentTask,
       }
     case CLEAR_TASKS:
       return {
         ...state,
-        loading: false,
-        tasks: [],
+        ...initialState,
+      }
+    case SELECT_CURRENT_TASK:
+      return {
+        ...state,
+        currentTask: {
+          ...state.tasks.find((task) => task.id === action.payload.id),
+          projectId: action.payload.projectId,
+          playing: true,
+        },
       }
     default:
       return state
